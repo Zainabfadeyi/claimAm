@@ -5,7 +5,9 @@ import { useRouter } from "next/router";
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/finder", label: "Eligibility Finder" },
+  { href: "/grad-scholarships", label: "Grad Scholarships" },
   { href: "/programs", label: "Programs" },
+  { href: "/progress", label: "My Progress" },
 ];
 
 export default function Layout({ children }) {

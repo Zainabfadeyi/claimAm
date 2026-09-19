@@ -10,7 +10,7 @@ export default function ProgramsIndex({ programs }) {
         <title>Verified Programs — ClaimAm</title>
         <meta
           name="description"
-          content="Browse all 12 verified, self-service support programs ClaimAm checks your situation against."
+          content="Browse all 23 verified support programs ClaimAm checks your situation against."
         />
       </Head>
 
@@ -18,9 +18,10 @@ export default function ProgramsIndex({ programs }) {
         <div className="mx-auto max-w-4xl">
           <h1 className="text-2xl font-bold text-brand-700 sm:text-3xl">Verified Programs</h1>
           <p className="mt-2 text-slate-600">
-            These are the {programs.length} self-service programs ClaimAm currently checks your
-            situation against. Each one has its own official application — ClaimAm only helps you
-            find and prepare for it.
+            These are the {programs.length} programs ClaimAm currently checks your situation
+            against — most are self-service, a few (mainly bank financing) need a branch visit.
+            Each one has its own official application — ClaimAm only helps you find and prepare
+            for it.
           </p>
 
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">

@@ -1,6 +1,6 @@
 {
-  "_schema_notes": "Each program: id, name, category[], org_type, agency, benefit, who_its_for, eligibility[], required_documents[], application_process, apply_url, status, confidence, source_url, source_checked, notes. confidence is 'high' (multi-field confirmed on official .gov.ng page) or 'needs_verification' (not yet checked, or official page lacks detail). Never present a 'needs_verification' program in the demo without saying so. access_pathway is one of: self_service_application, registry_gated, automatic_institutional, agency_sponsored, unknown, not_applicable — determines which CTA pattern the card uses (see ClaimAm design findings doc).",
-  "last_updated": "2026-09-17",
+  "_schema_notes": "Each program: id, name, category[], org_type, agency, benefit, who_its_for, eligibility[], required_documents[], application_process, apply_url, status, confidence, source_url, source_checked, notes. confidence is 'high' (multi-field confirmed on official .gov.ng page) or 'needs_verification' (not yet checked, or official page lacks detail). Never present a 'needs_verification' program in the demo without saying so. access_pathway is one of: self_service_application, registry_gated, automatic_institutional, agency_sponsored, unknown, not_applicable — determines which CTA pattern the card uses (see ClaimAm design findings doc). Bank/lender entries (org_type containing 'bank') additionally carry financing_type ('non_interest_sharia' or 'conventional') and religion_note, since users specifically ask whether Sharia-compliant banks lend to non-Muslims — religion_note states what the source actually confirms per bank, not a blanket claim.",
+  "last_updated": "2026-09-19",
   "programs": [
     {
       "id": "nelfund",
@@ -351,6 +351,366 @@
       "source_url": "Aggregator sources (scholarafrika.com, o3schools.com, universities.ng, edugaze.com.ng) converge consistently on eligibility and benefit; same Scholastica platform corroboration as the NNPC/Chevron entry",
       "source_checked": "2026-09-17",
       "notes": "Same Scholastica-platform caveat as NNPC/Chevron — reasonably corroborated but not directly fetched from Shell's own site. Narrower eligibility than most other programs in this dataset (200-level only, one-time application window per cohort) — worth flagging to the user that this is a narrower fit than it might first appear.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "jaiz_bank_msme",
+      "name": "Jaiz Bank — MSME & Business Financing (Non-Interest)",
+      "category": [
+        "Business/Funding"
+      ],
+      "org_type": "non_interest_bank",
+      "agency": "Jaiz Bank Plc",
+      "financing_type": "non_interest_sharia",
+      "religion_note": "Open to customers of all religions — a customer's faith is not a prerequisite for opening an account or accessing financing at Jaiz Bank. Some non-Muslim customers use non-interest banks specifically for their ethical/transparency model.",
+      "benefit": "Business financing structured as cost-plus-profit (Murabaha) rather than interest — e.g. the Special MSME Support Facility runs up to 1 year (micro enterprises) or up to 5 years (SMEs), with an optional moratorium. No fixed profit-rate percentage or loan ceiling was found published — amount and terms are set per business based on turnover and the specific product",
+      "who_its_for": "Registered Nigerian micro, small, and medium businesses wanting Sharia-compliant, non-interest financing — Nigeria's first full-fledged non-interest bank, open to applicants of any religion",
+      "eligibility": [
+        "Business registered with the Corporate Affairs Commission (CAC)",
+        "Existing business/corporate bank account, generally with a track record as an active customer",
+        "Business should be profitable or show regular cash flow, with a clean Credit Bureau report (no unpaid defaults)",
+        "Typically expects some trading history (varies by product) — exact minimum not published",
+        "No religious requirement — open to all Nigerians"
+      ],
+      "required_documents": [
+        "CAC certificate of registration",
+        "Completed application form",
+        "Company profile and business plan",
+        "12 months of bank statements",
+        "Audited or management financial accounts",
+        "Valid means of ID and proof of address",
+        "Collateral details, where applicable (bank has stated it is pursuing CBN approval for collateral-light, cash-flow-based SME lending in 2026)"
+      ],
+      "application_process": "Visit a Jaiz Bank branch or contact Business Banking to discuss the MSME Support Facility, Murabaha working capital, or other non-interest financing products. No self-service online loan application form was found — a relationship officer assesses and structures the financing per business",
+      "apply_url": "https://jaizbankplc.com/business-banking",
+      "status": "ongoing — general non-interest business financing; exact current MSME facility terms not independently confirmed",
+      "confidence": "needs_verification",
+      "source_url": "jaizbankplc.com/business-banking (fetched directly, Sept 2026 — the specific /special-msme-support-facility/ sub-page 404'd on retry, may have moved); eligibility/documents corroborated via aggregator sukfin.com/knowledge/jaiz-bank/ (generic SME-lending guidance, not Jaiz-specific published criteria); non-Muslim accessibility confirmed via The Guardian Nigeria ('Jaiz Bank: Non-interest banking services not for Muslims only') and Legit.ng's coverage of CBN-approved non-interest banks",
+      "source_checked": "2026-09-19",
+      "notes": "No profit-rate percentage is published anywhere found — non-interest banks don't quote a fixed 'interest rate' since financing is structured as cost-plus-profit (Murabaha/Ijara/etc). Get exact current figures from a branch before quoting a rate to users. apply_url points to Jaiz's own business banking page — do NOT use sukfin.com/apply/, which is an unrelated third-party loan marketplace, not Jaiz's official channel (same 'never show a fake Apply now' concern as the NELFUND entry).",
+      "access_pathway": "unknown"
+    },
+    {
+      "id": "tajbank_business_financing",
+      "name": "TAJBank — Business Financing (Non-Interest)",
+      "category": [
+        "Business/Funding"
+      ],
+      "org_type": "non_interest_bank",
+      "agency": "TAJBank Limited",
+      "financing_type": "non_interest_sharia",
+      "religion_note": "Non-interest banks in Nigeria, TAJBank included, do not require customers to be Muslim — a customer's religion is not a prerequisite for opening an account at any branch, per CBN-approved non-interest bank coverage. TAJBank itself does not publish a faith requirement.",
+      "benefit": "Non-interest financing across several structures: Cost Plus/Murabaha working capital, Murabaha import finance, Construction/Manufacturing (Istisna) finance, Lease (Ijara) finance, Agency (Wakalah) letters of credit, Bonds & Guarantees (Kafalah), and Partnership (Musharakah) funding. No fixed rate or ceiling published — sized to the business and product",
+      "who_its_for": "Registered Nigerian businesses needing working capital, import finance, equipment leasing, construction/manufacturing finance, or partnership funding — Nigeria's second full-fledged non-interest bank, open to applicants of any religion",
+      "eligibility": [
+        "Business registered with the Corporate Affairs Commission (CAC)",
+        "Active business/corporate account, generally expected to be a TAJBank customer",
+        "Regular cash flow and a clean Credit Bureau report (no defaults)",
+        "Aggregator sources suggest 1-3 years' trading history is typically expected — not confirmed on TAJBank's own site",
+        "No religious requirement — open to all Nigerians"
+      ],
+      "required_documents": [
+        "CAC certificate of registration",
+        "Completed application form",
+        "Company profile and business plan",
+        "12 months of bank statements",
+        "Audited or management financial accounts",
+        "Valid ID (passport, driver's license, voter's card) and proof of address",
+        "Collateral details, where applicable"
+      ],
+      "application_process": "Visit a TAJBank branch (Abuja HQ or Kano) or contact Business Banking to discuss the relevant non-interest financing product; no self-service online loan application form found — a loan adviser assesses the request and issues an offer letter if approved",
+      "apply_url": "https://tajbank.com/business-banking/",
+      "status": "ongoing",
+      "confidence": "needs_verification",
+      "source_url": "tajbank.com/business-banking/ (fetched directly, Sept 2026 — lists products but not eligibility/rates); eligibility/documents/process corroborated via aggregator sukfin.com/knowledge/taj-bank/ (generic guidance, not TAJBank-specific published criteria); non-Muslim accessibility per Legit.ng's CBN-approved non-interest bank coverage",
+      "source_checked": "2026-09-19",
+      "notes": "Same caveat as Jaiz: no published profit-rate percentage, and eligibility/documents come from a third-party aggregator rather than TAJBank's own published criteria — verify directly with the bank before presenting specifics as confirmed. apply_url points to TAJBank's own business banking page — do NOT use sukfin.com/apply/, an unrelated broker site.",
+      "access_pathway": "unknown"
+    },
+    {
+      "id": "boi_sme_loan",
+      "name": "Bank of Industry (BOI) — SME Financing",
+      "category": [
+        "Business/Funding"
+      ],
+      "org_type": "government-owned development bank",
+      "agency": "Bank of Industry (BOI)",
+      "financing_type": "conventional",
+      "religion_note": "Not applicable — BOI is a conventional government development bank, not a non-interest/Sharia institution.",
+      "benefit": "Interest-based term loans and working capital, generally in the 9-12% per annum range on standard SME products (sector-specific programs, like GLOW for women-led businesses, can be lower — see separate entry). Amounts vary widely by programme and business size, from roughly ₦500,000 up to ₦1 billion; standard tenor is around 3-5 years with a 3-12 month moratorium option",
+      "who_its_for": "Registered Nigerian business entities across manufacturing and other value-chain sectors BOI supports",
+      "eligibility": [
+        "Duly registered business entity (CAC) operating in a BOI-eligible sector",
+        "Viable business plan",
+        "At least 12 months of audited or management accounts",
+        "Good credit history",
+        "Collateral or a credible guarantor arrangement"
+      ],
+      "required_documents": [
+        "CAC registration certificate",
+        "Business/feasibility plan",
+        "Audited or management accounts (12+ months)",
+        "Bank statements",
+        "Valid means of ID (BVN, NIN, passport)",
+        "Collateral or guarantor documentation"
+      ],
+      "application_process": "Apply online via the relevant BOI programme portal (routed from boi.ng), which involves identity/BVN-NIN validation, CAC-based business verification, application completion, document upload, and assessment before disbursement",
+      "apply_url": "https://www.boi.ng/smes/",
+      "status": "ongoing — specific interest rate and loan ceiling depend on which BOI programme/sector window is current; recheck boi.ng before presenting exact figures",
+      "confidence": "needs_verification",
+      "source_url": "boi.ng/smes/ (fetched directly, Sept 2026 — lists lending structure and tenor but not a single published rate); rate range and eligibility corroborated via nairacompare.ng and getoze.com aggregator coverage",
+      "source_checked": "2026-09-19",
+      "notes": "BOI runs many overlapping sector/intervention windows (FGN MSME Intervention Program at fgnboimsmeinterventionloan.boi.ng, sector-specific funds, etc.) with different rates and ceilings — this entry is the general SME-financing umbrella, not one specific programme. Recheck boi.ng directly before quoting a specific rate or amount to a user.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "boi_glow",
+      "name": "Bank of Industry — GLOW (Guaranteed Loans for Women)",
+      "category": [
+        "Business/Funding",
+        "Women & Family"
+      ],
+      "org_type": "government-owned development bank",
+      "agency": "Bank of Industry (BOI)",
+      "financing_type": "conventional",
+      "religion_note": "Not applicable — BOI is a conventional government development bank, not a non-interest/Sharia institution.",
+      "benefit": "Women-focused business loan at 7% per annum (described by BOI as all-inclusive, with no appraisal, commitment, or monitoring fees — though insurance/legal costs may still apply). Ceiling: up to ₦10 million for micro businesses, ₦10-50 million for SMEs, within a ₦10 billion overall programme. Term loans run up to 5 years, working capital up to 3 years",
+      "who_its_for": "Women-owned and women-led Nigerian businesses in eligible sectors (manufacturing, ICT, e-commerce, creative industries, healthcare, education, renewable energy, waste management)",
+      "eligibility": [
+        "Business owned or led by a woman",
+        "CAC business registration (RC or BN number)",
+        "Valid BVN and NIN",
+        "Operating in an eligible sector"
+      ],
+      "required_documents": [
+        "CAC registration documents",
+        "Business/feasibility plan",
+        "Pro forma invoices or quotations",
+        "Business and personal bank statements",
+        "Valid ID (BVN, NIN, passport)",
+        "Cash flow projections",
+        "For limited companies: Certificate of Incorporation, tax clearance, audited accounts",
+        "Guarantor documentation (for smaller facilities)"
+      ],
+      "application_process": "Register via the official BOI GLOW portal: identity validation (BVN/NIN), business verification via CAC number, application completion, document submission, assessment, then disbursement if approved",
+      "apply_url": "https://www.boi.ng/sector/guaranteed-loans-for-women-glow/",
+      "status": "ongoing as of Sept 2026",
+      "confidence": "needs_verification",
+      "source_url": "boi.ng/sector/guaranteed-loans-for-women-glow/ (fetched directly, Sept 2026 — overview page, rate/ceiling not shown there); 7% rate, ceiling, and document list from withinnigeria.com (2026-09-18) explainer article",
+      "source_checked": "2026-09-19",
+      "notes": "Strongest-sourced of the new bank/lender entries — 7% rate and ₦10-50m ceiling came from a specific, recently-published explainer rather than generic aggregator guidance, but neither figure was directly confirmed on BOI's own overview page, so still flagged needs_verification. Also fits the existing Women & Family category alongside GEEP MarketMoni.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "mtn_graduate_programme",
+      "name": "MTN Global Graduate Development Programme",
+      "category": [
+        "Employment",
+        "Youth Opportunities"
+      ],
+      "org_type": "corporate",
+      "agency": "MTN Group",
+      "benefit": "Structured multi-year graduate development programme with formal training modules at MTN's three regional learning centres (Southern, Northern, and Western Africa), rotational on-the-job placements, and a path into full-time roles across MTN's footprint",
+      "who_its_for": "Recent graduates, any discipline, aged 20-27, across MTN's Africa & Middle East footprint — confirmed West African tracks include Nigeria and Benin (YELLO Graduate Programme)",
+      "eligibility": [
+        "Age 20-27",
+        "Minimum Second Class Upper (2:1) degree or HND Upper Credit, any discipline",
+        "0-2 years of work experience (recent graduate)",
+        "Fluent in English, written and spoken",
+        "Valid work authorization in the country applied to"
+      ],
+      "required_documents": [
+        "needs_verification — likely CV, degree certificate/transcript, means of ID; exact list not confirmed on a primary source"
+      ],
+      "application_process": "Apply online via MTN Group's careers site for the Global Graduate Development Programme; country-specific openings (e.g. Nigeria, Benin's YELLO track) are listed from there",
+      "apply_url": "https://group.mtn.com/careers/graduate-programme/",
+      "status": "2026 cycle applications closed 14 Nov 2025; recruits annually — recheck before demo",
+      "confidence": "needs_verification",
+      "source_url": "aggregator sources (opportunitiesforafricans.com, youthhubafrica.org, scholarshipregion.com) converge on eligibility/deadline; group.mtn.com/careers/graduate-programme/ cited as the official landing page (404'd on direct fetch, may be JS-rendered)",
+      "source_checked": "2026-09-19",
+      "notes": "Programme spans MTN's Africa & Middle East footprint via regional learning centres — West Africa is one of the three named centres, and Nigeria plus Benin's YELLO track are the specifically-confirmed West African tracks. Other West African markets MTN operates in (Ghana, Guinea-Bissau, Liberia, Côte d'Ivoire) were NOT confirmed to have an active local track this cycle — recheck group.mtn.com directly before presenting this to a user outside Nigeria/Benin.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "uba_gmap",
+      "name": "UBA Graduate Management Accelerated Programme (GMAP)",
+      "category": [
+        "Employment",
+        "Youth Opportunities"
+      ],
+      "org_type": "corporate",
+      "agency": "United Bank for Africa (UBA) Group",
+      "benefit": "6-month intensive classroom + on-the-job graduate trainee programme leading to permanent employment on successful completion, at a bank operating across roughly 20 African countries",
+      "who_its_for": "Recent graduates across UBA's African footprint (HQ'd in Lagos, Nigeria, operating across West, Central, and East Africa)",
+      "eligibility": [
+        "Bachelor's degree, any discipline, minimum Second Class Lower",
+        "Maximum age 27-30 (sources vary — confirm the current cycle's exact cutoff)",
+        "Completed NYSC or holds an exemption certificate (a Nigeria-specific requirement)",
+        "0-2 years of work experience",
+        "Strong communication and problem-solving skills"
+      ],
+      "required_documents": [
+        "needs_verification — likely CV, degree certificate, NYSC certificate/exemption, means of ID"
+      ],
+      "application_process": "Apply online via UBA's dedicated graduate recruitment site, which lists currently open countries and tracks",
+      "apply_url": "https://jointhetribe.ubagroup.com/",
+      "status": "Most recently confirmed cycle's deadline (20 Jul 2025) has passed; recruits annually — recheck before demo",
+      "confidence": "needs_verification",
+      "source_url": "aggregator sources (scholarsworld.ng, prosple.com, infoscript.com.ng) for eligibility, with a minor conflict on the age cutoff (27 vs 30) between sources; jointhetribe.ubagroup.com confirmed as UBA's own recruitment subdomain",
+      "source_checked": "2026-09-19",
+      "notes": "UBA operates in ~20 African countries; sources describe the programme as open to 'African countries' generically, without a confirmed West-Africa-specific breakdown — treat as pan-African rather than guaranteed for every West African market, and verify a given country has an open track on jointhetribe.ubagroup.com. The stated NYSC requirement is Nigeria-specific and likely doesn't apply to applicants in other countries.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "ecobank_eldp",
+      "name": "Ecobank Entry Level Development Programme (ELDP)",
+      "category": [
+        "Employment",
+        "Youth Opportunities"
+      ],
+      "org_type": "corporate",
+      "agency": "Ecobank",
+      "benefit": "Structured graduate trainee programme with training and mentorship, building toward a banking career at a pan-African bank",
+      "who_its_for": "Recent graduates — this specific cycle was Nigeria-only; Ecobank operates in roughly 33 African countries and other West African markets run their own separate ELDP cycles",
+      "eligibility": [
+        "Minimum Second Class Lower (2:2) degree from a recognized university, or OND (minimum lower credit) plus 1 year of internship experience",
+        "Minimum 5 O'Level credits including English and Mathematics, in one sitting",
+        "Completed NYSC",
+        "Field of study in banking, finance, business management, economics, or a related discipline"
+      ],
+      "required_documents": [
+        "needs_verification — not specified in sources found; likely CV, degree certificate, NYSC certificate, O'Level result"
+      ],
+      "application_process": "Apply online via Ecobank's recruitment portal (hosted on the Zoho Recruit platform) for the Entry Level Development Programme",
+      "apply_url": "https://ecobank.zohorecruit.com/jobs/Careers/748171000007196001/Entry-Level-Development-Programme-ELDP-",
+      "status": "Most recently confirmed cycle's deadline (10 Oct 2025) has passed; recruits annually per country — recheck before demo",
+      "confidence": "needs_verification",
+      "source_url": "afterschoolafrica.com aggregator coverage; apply URL is Ecobank's own job listing hosted on the Zoho Recruit ATS platform, not ecobank.com directly",
+      "source_checked": "2026-09-19",
+      "notes": "IMPORTANT: this specific cycle was Nigeria-only per the source — Ecobank runs separate country-level ELDP cycles for its other West African markets (Ghana, Togo, Côte d'Ivoire, Senegal, etc.), each with its own opening/deadline, not covered by this link. The apply_url is a third-party ATS (Zoho Recruit) branded for Ecobank rather than ecobank.com itself — a common legitimate pattern for corporate recruiting, but worth a quick sanity check before pointing a user there, in the same spirit as the NELFUND fake-domain lesson.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "access_bank_eltp",
+      "name": "Access Bank Entry Level Training Program (ELTP)",
+      "category": [
+        "Employment",
+        "Youth Opportunities"
+      ],
+      "org_type": "corporate",
+      "agency": "Access Bank Plc",
+      "benefit": "Structured entry-level training programme across multiple tracks, leading into banking career roles",
+      "who_its_for": "Recent Nigerian graduates — this programme is Nigeria-specific; Access Bank separately operates in Ghana, Sierra Leone, The Gambia, and other West African markets with their own local hiring",
+      "eligibility": [
+        "Minimum Second Class Lower (2:2) degree, any discipline, from an accredited university",
+        "0-2 years of work experience",
+        "Maximum age 26 at time of application",
+        "Completed NYSC",
+        "Must reside in or be eligible to work in Nigeria",
+        "Access to a personal laptop and reliable internet",
+        "May apply to only one ELTP track — multiple applications cause disqualification"
+      ],
+      "required_documents": [
+        "needs_verification — likely CV, degree certificate, NYSC certificate, means of ID"
+      ],
+      "application_process": "Apply online via Access Bank's careers portal for the Entry Level Training Program, selecting a single track",
+      "apply_url": "https://careers.accessbankplc.com/careers/entry-level",
+      "status": "2026 cycle reported open as of May 2026; exact current window not confirmed — recheck before demo",
+      "confidence": "needs_verification",
+      "source_url": "aggregator sources (pathwayafrika.com, crispng.com, myjobmag.com, examscholars.com) converge on eligibility; careers.accessbankplc.com/careers/entry-level confirmed as Access Bank's own official careers subdomain",
+      "source_checked": "2026-09-19",
+      "notes": "Explicitly Nigeria-only per sources ('must reside in or be eligible to work in Nigeria') — despite Access Bank's presence in Ghana, Sierra Leone, The Gambia, and other West African countries, this specific ELTP track doesn't cover them. Don't present this as pan-West-Africa.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "microsoft_adc_internship",
+      "name": "Microsoft Africa Development Centre (ADC) Internship",
+      "category": [
+        "Employment",
+        "Youth Opportunities"
+      ],
+      "org_type": "corporate",
+      "agency": "Microsoft (Africa Development Centre)",
+      "benefit": "Paid 12-week internship (software engineering, product management, data science, finance, marketing, or business tracks), on-site in Lagos, Nigeria — ADC also has a Nairobi, Kenya location",
+      "who_its_for": "University students (bachelor's, master's, MBA, or PhD) enrolled full-time, open to Nigerian and other African applicants",
+      "eligibility": [
+        "Enrolled full-time in a bachelor's, master's, MBA, or PhD programme relevant to the internship area, during the academic term immediately before the internship",
+        "Returning to school for at least one full academic term after the internship",
+        "Not completing two back-to-back Microsoft internships",
+        "Not taking classes while interning",
+        "At least 16 years old"
+      ],
+      "required_documents": [
+        "needs_verification — typically CV/resume and an online application form; exact list not confirmed"
+      ],
+      "application_process": "Apply online via Microsoft's global careers site for the internship programme, selecting the Lagos, Nigeria (Africa Development Centre) location; deadline is rolling, so apply early for best consideration",
+      "apply_url": "https://www.microsoft.com/en-us/madc/join-us",
+      "status": "2026 cohort (Jul-Sep 2026) deadline was 30 Apr 2026 for best consideration; recheck for the next cycle before demo",
+      "confidence": "needs_verification",
+      "source_url": "careers.microsoft.com/v2/global/en/internship_eligibility (Microsoft's own domain, general internship eligibility) plus aggregator coverage (247news.com.ng, activejobs.co.ke, mytopschools.com) for the ADC-specific/Lagos details and 2026 dates",
+      "source_checked": "2026-09-19",
+      "notes": "This is Microsoft's global internship programme applied to the Lagos, Nigeria site — not a West-Africa-only programme, but included here because the physical internship is on-site in Lagos and open to Nigerian applicants, matching the 'tech internship in West Africa' request. Eligibility above is Microsoft's general global internship policy; Lagos-specific quirks weren't separately confirmed.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "flutterwave_graduate_trainee",
+      "name": "Flutterwave Graduate Trainee Development Program",
+      "category": [
+        "Employment",
+        "Youth Opportunities"
+      ],
+      "org_type": "corporate",
+      "agency": "Flutterwave",
+      "benefit": "12-month fintech graduate trainee programme (Engineering and Non-Engineering tracks), with a 2-week Lagos onboarding, building toward a full-time role",
+      "who_its_for": "Recent Nigerian graduates — programme is currently piloted in Nigeria only, per Flutterwave, with more locations planned",
+      "eligibility": [
+        "Less than 16 months of work experience",
+        "Graduated December 2020 or later (rolling — check the current cutoff)",
+        "Physically based in Nigeria",
+        "Willing to commit to the full 12 months and be present in Lagos for 2-week onboarding",
+        "Engineering track requires a computer science degree",
+        "Genuine interest in fintech"
+      ],
+      "required_documents": [
+        "needs_verification — typically CV and an online application form; exact list not confirmed"
+      ],
+      "application_process": "Apply online via Flutterwave's careers site for the Graduate Trainee Development Program (Engineering or Non-Engineering track)",
+      "apply_url": "https://flutterwave.com/ng/careers/graduates",
+      "status": "Piloted in Nigeria; more locations 'set to open up soon' per Flutterwave — exact current cycle window not confirmed, recheck before demo",
+      "confidence": "needs_verification",
+      "source_url": "flutterwave.com/ng/careers/graduates (Flutterwave's own domain) plus aggregator coverage (jobgurus.com.ng, prosple.com) for eligibility detail; some sourced detail dates to earlier cohorts (2022), so current-cycle specifics need reconfirming",
+      "source_checked": "2026-09-19",
+      "notes": "Nigeria-only pilot as of the most recent confirmed information — not yet pan-West-Africa, despite Flutterwave operating across multiple African markets. Flag this to users outside Nigeria.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "deloitte_nigeria_graduate_trainee",
+      "name": "Deloitte Nigeria Graduate Trainee Programme",
+      "category": [
+        "Employment",
+        "Youth Opportunities"
+      ],
+      "org_type": "corporate",
+      "agency": "Deloitte (West Africa practice — Nigeria)",
+      "benefit": "Graduate trainee programme into one of Deloitte's core service lines (Audit & Assurance, Consulting, or Tax & Legal); Deloitte's West Africa practice serves Nigeria and Ghana",
+      "who_its_for": "Recent Nigerian graduates, any discipline",
+      "eligibility": [
+        "Minimum Second Class Upper degree/HND Upper Credit or equivalent, any discipline",
+        "Minimum 5 O'Level credits including Mathematics and English, in one sitting",
+        "Maximum age 26 at time of application",
+        "Completed NYSC",
+        "Have not previously sat the Deloitte aptitude test"
+      ],
+      "required_documents": [
+        "needs_verification — likely CV, degree certificate/transcript, NYSC certificate, O'Level result"
+      ],
+      "application_process": "Apply online via Deloitte Nigeria's careers page, then complete online numeracy/critical reasoning tests and a personality assessment if shortlisted",
+      "apply_url": "https://www.deloitte.com/ng/en/careers.html",
+      "status": "2026 Consulting-track cycle closed 10 Apr 2026; Deloitte recruits separately by service line annually — recheck before demo",
+      "confidence": "needs_verification",
+      "source_url": "hotnigerianjobs.com, jobnow.ng, scholarsworld.ng aggregator coverage for eligibility/deadline; deloitte.com/ng/en/careers.html confirmed as Deloitte's own official Nigeria careers page",
+      "source_checked": "2026-09-19",
+      "notes": "Deloitte's West Africa practice covers Nigeria and Ghana, but this specific eligibility/deadline data is Nigeria-only — Ghana's cycle would need separate verification. Deloitte recruits separately into Audit & Assurance, Consulting, and Tax & Legal tracks; this entry is a general umbrella — verify which track is currently open before presenting to a user.",
       "access_pathway": "self_service_application"
     }
   ]

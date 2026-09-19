@@ -1,0 +1,436 @@
+{
+  "_schema_notes": "Grad-scholarship-specific dataset, separate from backend/data/programs.json. Each entry: id, name, scope ('global'|'nigeria'), provider, degree_levels[], study_destination, fields_of_study, nationality_eligibility, financial_need_required, min_academic_requirement, work_experience_required, benefit, eligibility[], required_documents[], essay_or_interview {required, essay_topics[], interview}, application_process, apply_url, deadline_note, status, confidence, source_url, source_checked, notes. essay_topics are REAL, previously-used prompt themes where known — the AI Essay Predictor may only draw from these plus the user's own profile; it must never invent a topic for a scholarship with an empty essay_topics list.",
+  "last_updated": "2026-09-19",
+  "scholarships": [
+    {
+      "id": "chevening",
+      "name": "Chevening Scholarship",
+      "scope": "global",
+      "provider": "UK Government (FCDO)",
+      "degree_levels": ["masters"],
+      "study_destination": "United Kingdom (any UK university, applicant's choice)",
+      "fields_of_study": "any",
+      "nationality_eligibility": "Citizens of eligible Chevening countries, including Nigeria",
+      "financial_need_required": false,
+      "min_academic_requirement": "Undergraduate degree that qualifies for UK master's admission, completed at least 2 years before the deadline",
+      "work_experience_required": "At least 2,800 hours (roughly 2 years) of work experience — full-time, part-time, or voluntary",
+      "benefit": "Fully funded one-year UK master's degree: tuition, monthly stipend, return flights, and additional grants/allowances",
+      "eligibility": [
+        "Citizen of an eligible Chevening country (Nigeria is eligible)",
+        "Return home for at least 2 years after the award ends",
+        "At least 2,800 hours of work experience",
+        "Undergraduate degree completed 2+ years before the application deadline",
+        "Apply to and receive admission offers from at least 3 eligible UK university courses",
+        "No UK-government-funded scholarship in the past 12 months"
+      ],
+      "required_documents": [
+        "Undergraduate degree certificate/transcript",
+        "Two references",
+        "Four required essays (leadership, networking, course choice, career plan — 300 words each)",
+        "Valid passport",
+        "Evidence of work experience"
+      ],
+      "essay_or_interview": {
+        "required": true,
+        "essay_topics": [
+          "Leadership and influencing experience",
+          "Networking experience and how you'll use Chevening's alumni network",
+          "Why this course, and why now",
+          "Career plan — including your commitment to return home after the scholarship"
+        ],
+        "interview": true
+      },
+      "application_process": "Apply online via Chevening's own portal; separately secure admission to at least 3 eligible UK university courses",
+      "apply_url": "https://www.chevening.org/",
+      "deadline_note": "2027/2028 cycle: opened 4 Aug 2026, closes 6 Oct 2026, 11:00 UTC — recheck for next cycle",
+      "status": "cycle-dependent — recheck chevening.org before presenting a live deadline",
+      "confidence": "needs_verification",
+      "source_url": "aggregator sources (cheveningprep.com, scholarshipregion.com, everythingabuad.com) converge on eligibility/essays/deadline; chevening.org is Chevening's own official domain",
+      "source_checked": "2026-09-19",
+      "notes": "Strong, consistent detail across sources including the exact essay structure — one of the better-sourced entries in this dataset. Deadline is annual and moves each cycle; always confirm the current window on chevening.org."
+    },
+    {
+      "id": "fulbright_nigeria_phd",
+      "name": "Fulbright Foreign Student Program (Nigeria — PhD track)",
+      "scope": "global",
+      "provider": "U.S. Department of State / U.S. Embassy Nigeria",
+      "degree_levels": ["phd"],
+      "study_destination": "United States",
+      "fields_of_study": "any discipline",
+      "nationality_eligibility": "Nigerian citizens",
+      "financial_need_required": false,
+      "min_academic_requirement": "Outstanding academic record; must already be at least 2 years into a doctoral program",
+      "work_experience_required": "Endorsement of home institution as an academic-staff-track doctoral candidate",
+      "benefit": "Funded research/study period in the United States to advance an in-progress PhD, plus academic and cultural exchange support",
+      "eligibility": [
+        "Nigerian citizen",
+        "At least 2 years into a doctoral (PhD) program at a Nigerian university or research institute",
+        "Endorsement from home institution",
+        "Outstanding academic record and strong English proficiency",
+        "Minimum TOEFL score of 90 (or equivalent)"
+      ],
+      "required_documents": [
+        "Doctoral program enrollment/progress evidence",
+        "Home institution endorsement letter",
+        "TOEFL score report",
+        "Academic transcripts",
+        "Research proposal/statement"
+      ],
+      "essay_or_interview": {
+        "required": true,
+        "essay_topics": [],
+        "interview": true
+      },
+      "application_process": "Apply online via the Fulbright Foreign Student Program application, coordinated through the U.S. Embassy in Nigeria",
+      "apply_url": "https://ng.usembassy.gov/the-fulbright-foreign-student-program/",
+      "deadline_note": "Strict deadline historically around 1 June — recheck for the current cycle",
+      "status": "needs_verification — exact current-cycle deadline not independently confirmed",
+      "confidence": "needs_verification",
+      "source_url": "us.fulbrightonline.org (Nigeria country pages) and ng.usembassy.gov (U.S. Embassy Nigeria's own domain), plus scholarshipportal.ng aggregator coverage",
+      "source_checked": "2026-09-19",
+      "notes": "IMPORTANT: for Nigeria specifically, this Fulbright track is PhD-only — applicants must already be 2+ years into a doctoral programme at a Nigerian institution. Masters applicants and first-degree holders are explicitly NOT eligible under this Nigeria-specific track (other Fulbright tracks exist globally with different rules — don't generalize this restriction to other countries).",
+      "essay_topics_caveat": "No specific essay prompts found publicly — do not invent any; note in the UI that essay topics are set case-by-case."
+    },
+    {
+      "id": "daad_epos",
+      "name": "DAAD EPOS Scholarship (Development-Related Postgraduate Courses)",
+      "scope": "global",
+      "provider": "DAAD (German Academic Exchange Service)",
+      "degree_levels": ["masters", "phd"],
+      "study_destination": "Germany",
+      "fields_of_study": "any, via a specific list of EPOS-affiliated postgraduate courses",
+      "nationality_eligibility": "Graduates from developing and newly industrialised countries, including Nigeria",
+      "financial_need_required": false,
+      "min_academic_requirement": "Bachelor's degree (typically 4-year), completed no more than 6 years before application",
+      "work_experience_required": "Minimum 2 years of relevant professional experience",
+      "benefit": "Full funding for a Master's (up to 2 years) or PhD (up to 3.5 years) at a German university: monthly stipend (~€992 Master's / ~€1,300-1,400 PhD), health/accident/liability insurance, and other allowances",
+      "eligibility": [
+        "Bachelor's degree in an appropriate subject",
+        "Degree completed within the last 6 years",
+        "At least 2 years of relevant professional experience",
+        "From a DAAD-eligible developing/newly industrialised country (Nigeria qualifies)"
+      ],
+      "required_documents": [
+        "Bachelor's degree certificate/transcript",
+        "CV",
+        "Motivation letter",
+        "Proof of professional experience",
+        "Language proficiency evidence (German or English, depending on course)"
+      ],
+      "essay_or_interview": {
+        "required": true,
+        "essay_topics": ["Motivation letter tailored to the chosen EPOS course and its development relevance"],
+        "interview": false
+      },
+      "application_process": "Applications are submitted directly to the chosen EPOS-affiliated course (not to DAAD centrally) — select up to 3 postgraduate programmes from the EPOS list and apply via each course's own procedure",
+      "apply_url": "https://www.daad.de/en/information-services-for-higher-education-institutions/further-information-on-daad-programmes/epos/",
+      "deadline_note": "Roughly one year ahead of intended admission — e.g. 15 October 2026 for a course starting October 2027; varies by course",
+      "status": "ongoing — deadlines vary per affiliated course, recheck the specific programme",
+      "confidence": "needs_verification",
+      "source_url": "daad.de and www2.daad.de (DAAD's own domains) plus aggregator coverage (mastersportal.com, opportunitiesforafricans.com) for stipend figures and deadline pattern",
+      "source_checked": "2026-09-19",
+      "notes": "Unlike most scholarships here, EPOS has no single central application — the real deadline and process depend entirely on which of the many EPOS-listed courses the applicant picks. Treat the deadline_note as a general pattern, not a fixed date."
+    },
+    {
+      "id": "commonwealth_scholarship",
+      "name": "Commonwealth Scholarships (Masters & PhD)",
+      "scope": "global",
+      "provider": "UK Government (Commonwealth Scholarship Commission)",
+      "degree_levels": ["masters", "phd"],
+      "study_destination": "United Kingdom",
+      "fields_of_study": "any, with some development-relevant priority themes",
+      "nationality_eligibility": "Citizens of developing Commonwealth countries, including Nigeria",
+      "financial_need_required": true,
+      "min_academic_requirement": "Masters: first degree with at least Second Class Upper. PhD: Second Class Lower accepted, plus a relevant master's degree",
+      "work_experience_required": null,
+      "benefit": "Fully funded UK Master's or PhD: tuition, living stipend, airfare, and other allowances",
+      "eligibility": [
+        "Citizen of a developing Commonwealth country (Nigeria qualifies)",
+        "Masters: minimum Second Class Upper first degree",
+        "PhD: minimum Second Class Lower first degree plus a relevant master's degree",
+        "Admission offers from at least 2 UK institutions",
+        "NYSC discharge or exemption certificate (Nigerian applicants)",
+        "Unable to fund UK study independently — financial need is a stated eligibility criterion, not just a preference"
+      ],
+      "required_documents": [
+        "Degree certificates/transcripts",
+        "NYSC discharge/exemption certificate",
+        "Admission offers from 2+ UK institutions",
+        "References",
+        "Evidence of financial need"
+      ],
+      "essay_or_interview": {
+        "required": true,
+        "essay_topics": [],
+        "interview": false
+      },
+      "application_process": "Apply online via the Commonwealth Scholarship Commission's own portal (separate Masters and PhD tracks); Nigerian applicants may also need endorsement routed through the Federal Ministry of Education",
+      "apply_url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarships/",
+      "deadline_note": "2027/2028 cycle: on or before 20 October 2026 — recheck for the current cycle",
+      "status": "cycle-dependent — recheck cscuk.fcdo.gov.uk before presenting a live deadline",
+      "confidence": "needs_verification",
+      "source_url": "cscuk.fcdo.gov.uk (the Commission's own domain) plus education.gov.ng (Nigeria's Federal Ministry of Education advert PDF) and aggregator coverage (scholars4dev.com, arbiterz.com)",
+      "source_checked": "2026-09-19",
+      "notes": "Financial need is an explicit, stated eligibility criterion here (unlike Chevening) — flag this clearly to users who can self-fund, since they likely won't qualify regardless of academic strength. PhD track name in the source is specifically for 'least developed countries and vulnerable states' — Nigeria's exact PhD-track eligibility should be reconfirmed on cscuk.fcdo.gov.uk."
+    },
+    {
+      "id": "mastercard_foundation_scholars",
+      "name": "Mastercard Foundation Scholars Program",
+      "scope": "global",
+      "provider": "Mastercard Foundation, via 60+ partner universities worldwide",
+      "degree_levels": ["masters"],
+      "study_destination": "Varies by partner university (e.g. Cambridge, Edinburgh, Toronto, and African partner institutions)",
+      "fields_of_study": "any full-time master's programme offered by a partner university",
+      "nationality_eligibility": "From and living in an African country (temporary study/work abroad is fine)",
+      "financial_need_required": true,
+      "min_academic_requirement": "Strong academic achievement (varies by partner institution's own admission bar)",
+      "work_experience_required": null,
+      "benefit": "Full funding: tuition, accommodation, books, transportation, and a living stipend, tied to whichever partner university admits the applicant",
+      "eligibility": [
+        "From and living in an African country (Nigeria qualifies)",
+        "28 years old or younger at application (32 or younger for Refugee/Persons-with-Disabilities categories)",
+        "Demonstrated financial hardship",
+        "Strong academic achievement and leadership potential",
+        "Commitment to giving back to community/home country/Africa, and to sustainability/climate resilience themes"
+      ],
+      "required_documents": [
+        "needs_verification — varies by partner institution, but typically CV, transcripts, references, and a personal statement"
+      ],
+      "essay_or_interview": {
+        "required": true,
+        "essay_topics": ["Commitment to giving back to your community, home country, or Africa"],
+        "interview": true
+      },
+      "application_process": "Apply directly to a Mastercard Foundation Scholars partner university's own master's admissions process, then opt into the Scholars Program during that application",
+      "apply_url": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/",
+      "deadline_note": "Varies by partner university; one commonly cited deadline is 15 November 2026",
+      "status": "ongoing — exact deadline depends entirely on which partner university/programme is chosen",
+      "confidence": "needs_verification",
+      "source_url": "mastercardfdn.org (the Foundation's own domain) plus partner-university pages (mastercardfoundation.fund.cam.ac.uk) and aggregator coverage",
+      "source_checked": "2026-09-19",
+      "notes": "This is not a single centralized scholarship — each of 60+ partner universities runs its own admissions and Scholars selection, with different deadlines and specific requirements. Treat this entry as a starting point, not a single application."
+    },
+    {
+      "id": "australia_awards",
+      "name": "Australia Awards Scholarships (Africa — Master's)",
+      "scope": "global",
+      "provider": "Australian Government (DFAT)",
+      "degree_levels": ["masters"],
+      "study_destination": "Australia",
+      "fields_of_study": "Priority areas for Nigeria typically include public health, agricultural science/food security, infrastructure, public policy/governance, and education",
+      "nationality_eligibility": "Citizens of participating African countries, including Nigeria",
+      "financial_need_required": false,
+      "min_academic_requirement": "needs_verification — general Australia Awards academic-merit bar, not separately confirmed for the Africa programme",
+      "work_experience_required": null,
+      "benefit": "Fully funded Australian Master's degree: tuition, living stipend, travel, and health cover",
+      "eligibility": [
+        "Citizen of a participating African country (Nigeria qualifies)",
+        "Applying for a Master's degree only — the Africa programme does not offer PhD scholarships",
+        "First apply for admission to an eligible Master's programme at an Australian university"
+      ],
+      "required_documents": [
+        "needs_verification — typically degree transcripts, references, English proficiency test (IELTS/TOEFL), and admission evidence"
+      ],
+      "essay_or_interview": {
+        "required": true,
+        "essay_topics": [],
+        "interview": true
+      },
+      "application_process": "Apply online via the OASIS portal, managed through the Australian High Commission in Abuja for Nigerian applicants",
+      "apply_url": "https://www.dfat.gov.au/people-to-people/australia-awards/australia-awards-scholarships",
+      "deadline_note": "Recently cited deadline: 30 April 2026, 14:00 AEST — recheck for the current cycle",
+      "status": "cycle-dependent — recheck before presenting a live deadline",
+      "confidence": "needs_verification",
+      "source_url": "dfat.gov.au (Australian Government's own domain) plus aggregator coverage (australiaawardshub.com, migrationvisportal.com)",
+      "source_checked": "2026-09-19",
+      "notes": "IMPORTANT: PhD is NOT available under the Africa-specific Australia Awards programme — Master's only. Don't match PhD-seeking users to this entry."
+    },
+    {
+      "id": "erasmus_mundus_jmd",
+      "name": "Erasmus Mundus Joint Master's Degrees",
+      "scope": "global",
+      "provider": "European Commission (Erasmus+)",
+      "degree_levels": ["masters"],
+      "study_destination": "Multiple European universities (a consortium — study across 2+ countries per programme)",
+      "fields_of_study": "varies by joint programme — hundreds of EMJMD programmes exist across disciplines",
+      "nationality_eligibility": "Open globally, including Nigeria",
+      "financial_need_required": false,
+      "min_academic_requirement": "Bachelor's degree, plus programme-specific admission requirements",
+      "work_experience_required": null,
+      "benefit": "Full tuition, ~€1,400/month stipend for up to 24 months (~€33,600 total), health insurance, and travel/installation allowances",
+      "eligibility": [
+        "Bachelor's degree",
+        "Meets the specific joint programme's own admission criteria",
+        "Not a national of the country where the coordinating institution is based, for certain scholarship categories (varies by programme)"
+      ],
+      "required_documents": [
+        "needs_verification — varies by programme, but typically transcripts, CV, motivation letter, references, language proficiency"
+      ],
+      "essay_or_interview": {
+        "required": true,
+        "essay_topics": ["Motivation letter specific to the chosen joint programme"],
+        "interview": false
+      },
+      "application_process": "Browse the official EMJMD catalogue, then apply directly to the chosen joint programme/consortium — no single central Erasmus Mundus application",
+      "apply_url": "https://erasmus-plus.ec.europa.eu/opportunities/opportunities-for-individuals/students/erasmus-mundus-joint-master-degrees",
+      "deadline_note": "Varies by programme — most fall between October and January for the following academic year's intake",
+      "status": "ongoing — deadlines are set per individual joint programme, not centrally",
+      "confidence": "needs_verification",
+      "source_url": "erasmus-plus.ec.europa.eu (European Commission's own domain) plus aggregator coverage (mastersportal.com, globalsouthacademia.com)",
+      "source_checked": "2026-09-19",
+      "notes": "Like DAAD EPOS, this is an umbrella — the real deadline, essay expectations, and requirements depend entirely on which of the many EMJMD programmes the applicant picks from the official catalogue."
+    },
+    {
+      "id": "gates_cambridge",
+      "name": "Gates Cambridge Scholarship",
+      "scope": "global",
+      "provider": "Gates Cambridge Trust, University of Cambridge",
+      "degree_levels": ["masters", "phd"],
+      "study_destination": "University of Cambridge, United Kingdom",
+      "fields_of_study": "any full-time PhD, MLitt, or eligible one-year postgraduate course",
+      "nationality_eligibility": "Open globally, including Nigeria (any country outside the UK)",
+      "financial_need_required": false,
+      "min_academic_requirement": "Outstanding academic record — average Gates Scholar GPA is around 3.92/4.0",
+      "work_experience_required": null,
+      "benefit": "Full funding at Cambridge: university and college fees, maintenance allowance, and additional allowances",
+      "eligibility": [
+        "Citizen of a country outside the UK (Nigeria qualifies)",
+        "Applying for full-time or part-time PhD, full-time MLitt, or an eligible one-year postgraduate course at Cambridge",
+        "Outstanding academic record",
+        "Demonstrated intellectual distinction (honors, awards, prior recognition)",
+        "Strong preparation for the proposed field of graduate study"
+      ],
+      "required_documents": [
+        "Cambridge course/college application (the Gates Cambridge application is embedded within it)",
+        "Academic transcripts",
+        "References",
+        "Research proposal (for PhD applicants)"
+      ],
+      "essay_or_interview": {
+        "required": true,
+        "essay_topics": [],
+        "interview": true
+      },
+      "application_process": "Apply for admission to a Cambridge course and college first, then complete the Gates Cambridge funding section within the same application",
+      "apply_url": "https://www.gatescambridge.org/",
+      "deadline_note": "2026 cycle: 8 December 2026 or 6 January 2027, depending on the specific course — recheck the course's own deadline",
+      "status": "cycle-dependent — recheck gatescambridge.org and the specific Cambridge course deadline",
+      "confidence": "needs_verification",
+      "source_url": "aggregator sources (scholars4dev.com, globalsouthacademia.com, crispng.com) converge on eligibility/deadlines; gatescambridge.org is the Trust's own official domain",
+      "source_checked": "2026-09-19",
+      "notes": "Extremely competitive — the average admitted GPA (3.92/4.0) is worth surfacing explicitly in gap analysis so users can calibrate expectations realistically rather than assume typical postgrad grades are competitive here."
+    },
+    {
+      "id": "ptdf_overseas_postgrad",
+      "name": "PTDF Overseas Postgraduate Scholarship (Masters & PhD)",
+      "scope": "nigeria",
+      "provider": "Petroleum Technology Development Fund (PTDF)",
+      "degree_levels": ["masters", "phd"],
+      "study_destination": "United Kingdom, Germany, France, or Malaysia (partner universities)",
+      "fields_of_study": "Priority fields: engineering, geosciences, energy studies, environmental sciences, technology development",
+      "nationality_eligibility": "Nigerian citizens",
+      "financial_need_required": false,
+      "min_academic_requirement": "needs_verification — likely a strong first-degree/master's result in an eligible priority field",
+      "work_experience_required": null,
+      "benefit": "Fully funded overseas Master's/PhD: tuition, return airfare, accommodation/living allowance, health insurance",
+      "eligibility": [
+        "Nigerian citizen",
+        "Admission or enrollment eligibility in an eligible priority field (engineering, geosciences, energy studies, environmental sciences, technology development)",
+        "needs_verification for exact academic threshold — likely a strong first-degree or master's result"
+      ],
+      "required_documents": [
+        "needs_verification — likely admission letter, transcripts, means of ID; overseas track likely requires an offer from a partner university"
+      ],
+      "essay_or_interview": {
+        "required": false,
+        "essay_topics": [],
+        "interview": false
+      },
+      "application_process": "Create an applicant account and apply online via the PTDF scholarship portal",
+      "apply_url": "https://scholarship.ptdf.gov.ng/",
+      "deadline_note": "2026 cycle applications closed 5 June 2026; reopens annually — recheck before demo",
+      "status": "2026 cycle closed; reopens annually — recheck scholarship.ptdf.gov.ng",
+      "confidence": "needs_verification",
+      "source_url": "Same sourcing as the ptdf_scholarship entry in programs.json — scholarship.ptdf.gov.ng (fetched directly, confirmed real portal) plus aggregator corroboration",
+      "source_checked": "2026-09-17",
+      "notes": "Shares underlying research with the general 'ptdf_scholarship' entry in programs.json (which covers both In-Country and Overseas tracks) — this entry narrows to the Masters/PhD-relevant Overseas track specifically, for the grad-scholarship matcher's purposes."
+    },
+    {
+      "id": "federal_scholarship_board_postgrad",
+      "name": "Federal Scholarship Board — Postgraduate & Commonwealth Scholarship & Fellowship Plan (CSFP) Award",
+      "scope": "nigeria",
+      "provider": "Federal Scholarship Board (Federal Ministry of Education)",
+      "degree_levels": ["masters", "phd"],
+      "study_destination": "Various — CSFP partner countries plus BEA-track destination countries (e.g. China, Russia, Algeria, Morocco, Egypt, Mexico, Cuba, Hungary, Romania, Turkey)",
+      "fields_of_study": "any",
+      "nationality_eligibility": "Nigerian citizens",
+      "financial_need_required": false,
+      "min_academic_requirement": "First class or upper second class degree (postgrad Nigerian Awards track); PhD/postgraduate degree-based criteria for CSFP",
+      "work_experience_required": null,
+      "benefit": "₦750,000/year renewable award for PhD-level (per the general Federal Scholarship Board benefit schedule), plus CSFP/BEA-track fully funded overseas postgraduate placements",
+      "eligibility": [
+        "Nigerian citizen",
+        "Nigerian Awards (postgrad): first class or upper second class degree, admission, age below 35",
+        "CSFP: postgraduate/PhD, degree-based criteria",
+        "BEA (postgrad track): country-specific placement criteria"
+      ],
+      "required_documents": [
+        "needs_verification — likely degree certificate/transcript, admission letter for postgrad placements"
+      ],
+      "essay_or_interview": {
+        "required": false,
+        "essay_topics": [],
+        "interview": false
+      },
+      "application_process": "Online, free, via the Federal Ministry of Education's scholarship portal",
+      "apply_url": "https://scholarship.education.gov.ng/",
+      "deadline_note": "live application window not confirmed for the postgraduate tracks specifically — recheck before demo",
+      "status": "benefit amounts confirmed current; live postgraduate-track application window not confirmed",
+      "confidence": "needs_verification",
+      "source_url": "Same sourcing as the federal_scholarship_board entry in programs.json — education.gov.ng (fetched directly) for org structure/benefits; scholarship.education.gov.ng confirmed as the real portal but JS-rendered",
+      "source_checked": "2026-09-17",
+      "notes": "Shares underlying research with the general 'federal_scholarship_board' entry in programs.json — this entry narrows to the postgraduate/PhD-relevant CSFP and BEA tracks specifically, for the grad-scholarship matcher's purposes."
+    },
+    {
+      "id": "tetfund_astd",
+      "name": "TETFund Academic Staff Training and Development (AST&D)",
+      "scope": "nigeria",
+      "provider": "Tertiary Education Trust Fund (TETFund)",
+      "degree_levels": ["masters", "phd"],
+      "study_destination": "Nigeria only (in-country) — foreign/overseas sponsorship under this fund is currently suspended",
+      "fields_of_study": "any NUC-approved graduate course",
+      "nationality_eligibility": "Nigerian academic staff of eligible tertiary institutions",
+      "financial_need_required": false,
+      "min_academic_requirement": "Full-time, confirmed academic staff status at an eligible Nigerian tertiary institution, with secured admission to a National Universities Commission (NUC)-approved graduate programme",
+      "work_experience_required": "Must be a confirmed (not probationary) academic staff member",
+      "benefit": "Funded Master's or PhD study at a Nigerian university, for confirmed academic staff",
+      "eligibility": [
+        "Full-time, confirmed academic staff at an eligible Nigerian tertiary institution",
+        "Secured admission to an NUC-approved graduate programme within Nigeria",
+        "Not already registered for the programme independently before applying (must apply before registering)",
+        "Not seeking a second Master's or second PhD"
+      ],
+      "required_documents": [
+        "Admission letter",
+        "Filled TETFund Nomination Form",
+        "Curriculum vitae",
+        "Bond form",
+        "Medical certificate",
+        "Bank details"
+      ],
+      "essay_or_interview": {
+        "required": false,
+        "essay_topics": [],
+        "interview": false
+      },
+      "application_process": "Apply through your institution's Academic Planning Unit, addressed to the Vice-Chancellor/Rector, with the required nomination documents — no central online portal",
+      "apply_url": "https://tetfund.gov.ng/",
+      "deadline_note": "needs_verification — each institution runs its own submission window/cycle",
+      "status": "ongoing, in-country only — overseas AST&D sponsorship currently suspended",
+      "confidence": "needs_verification",
+      "source_url": "university-published notices (unilag.edu.ng, unn.edu.ng, ui.edu.ng) describing TETFund's own AST&D guidelines; tetfund.gov.ng is the Fund's own domain",
+      "source_checked": "2026-09-19",
+      "notes": "IMPORTANT: this scholarship is restricted to confirmed academic staff already employed by a Nigerian tertiary institution — it is NOT open to the general public or to students without an academic-staff appointment. Only match this to users who describe being lecturers/academic staff pursuing further study. Also flag clearly that overseas sponsorship under this fund is currently suspended — in-country only."
+    }
+  ]
+}

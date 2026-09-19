@@ -36,7 +36,7 @@ pages/                        # routing only — thin files that import from fro
   index.js                    # home: hero + category grid
   finder.js                   # Eligibility Finder: intake form + results
   api/reason.js               # POST handler → backend/lib/reasonEngine
-  programs/index.js           # browse all 12 verified programs
+  programs/index.js           # browse all 23 verified programs
   programs/[id].js            # program detail page
   programs/[id]/checklist.js  # interactive preparation checklist
 
@@ -53,7 +53,7 @@ backend/
     categories.js             # the 6 live category chips → program id map
     programs.js                # getAllPrograms() / getProgramById()
   data/
-    programs.json             # the 12 live (self-service) programs the app reasons over
+    programs.json             # the 23 live programs the app reasons over (mostly self-service, plus a few bank financing entries that need a branch visit)
     programs.full.json        # all 19 originally-researched programs, reference only, not loaded
 ```
 

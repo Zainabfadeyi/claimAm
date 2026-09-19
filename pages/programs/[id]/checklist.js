@@ -2,10 +2,12 @@ import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Layout from "../../../frontend/components/Layout";
+import RemindMeCard from "../../../frontend/components/RemindMeCard";
 import { getAllPrograms, getProgramById } from "../../../backend/lib/programs";
+import { buildChecklistSteps } from "../../../frontend/lib/checklistSteps";
 
 export default function ProgramChecklist({ program }) {
-  const steps = buildSteps(program);
+  const steps = buildChecklistSteps(program);
   const storageKey = `claimam:checklist:${program.id}`;
 
   const [checked, setChecked] = useState(() => Array(steps.length).fill(false));
@@ -104,6 +106,13 @@ export default function ProgramChecklist({ program }) {
             ))}
           </div>
 
+          <RemindMeCard
+            programId={program.id}
+            programName={program.name}
+            applyUrl={program.apply_url}
+            statusNote={program.status_detail || program.status}
+          />
+
           {allDone ? (
             <div className="mt-6 rounded-2xl border border-brand-200 bg-brand-50 p-6">
               <h2 className="text-lg font-semibold text-brand-700">
@@ -152,20 +161,6 @@ export default function ProgramChecklist({ program }) {
   );
 }
 
-function buildSteps(program) {
-  const documentSteps = program.required_documents.map((doc) => ({
-    title: `Gather: ${doc}`,
-  }));
-
-  return [
-    ...documentSteps,
-    {
-      title: "Complete the application on the official portal",
-      description: program.application_process,
-    },
-  ];
-}
-
 export async function getStaticPaths() {
   const programs = getAllPrograms();
   return {
@@ -180,11 +175,20 @@ export async function getStaticProps({ params }) {
     return { notFound: true };
   }
 
-  const { id, name, required_documents, application_process, apply_url } = program;
+  const { id, name, required_documents, application_process, apply_url, status, status_detail } =
+    program;
 
   return {
     props: {
-      program: { id, name, required_documents, application_process, apply_url },
+      program: {
+        id,
+        name,
+        required_documents,
+        application_process,
+        apply_url,
+        status: status || null,
+        status_detail: status_detail || null,
+      },
     },
   };
 }

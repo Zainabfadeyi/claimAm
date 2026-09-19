@@ -68,7 +68,7 @@ export default function Finder() {
         <title>Eligibility Finder — ClaimAm</title>
         <meta
           name="description"
-          content="Describe your situation and see which of ClaimAm's 12 verified programs you may qualify for."
+          content="Describe your situation and see which of ClaimAm's 23 verified programs you may qualify for."
         />
       </Head>
 
@@ -128,9 +128,11 @@ export default function Finder() {
                 models. ClaimAm never asks for your NIN, BVN, or bank details.
               </SidebarCard>
               <SidebarCard title="What we check against">
-                ClaimAm compares your situation against 12 verified, self-service programs across
-                education, employment, business funding, and agriculture — see the full list on
-                the{" "}
+                ClaimAm compares your situation against 23 verified programs across education,
+                employment/youth opportunities (including West African tech internships and
+                graduate trainee programmes), business funding (including non-interest/Sharia-
+                compliant banks), and agriculture — most are self-service, a few need a branch
+                visit — see the full list on the{" "}
                 <Link href="/programs" className="text-brand-700 underline">
                   Programs
                 </Link>{" "}
