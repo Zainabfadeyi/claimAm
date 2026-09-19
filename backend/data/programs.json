@@ -1,0 +1,357 @@
+{
+  "_schema_notes": "Each program: id, name, category[], org_type, agency, benefit, who_its_for, eligibility[], required_documents[], application_process, apply_url, status, confidence, source_url, source_checked, notes. confidence is 'high' (multi-field confirmed on official .gov.ng page) or 'needs_verification' (not yet checked, or official page lacks detail). Never present a 'needs_verification' program in the demo without saying so. access_pathway is one of: self_service_application, registry_gated, automatic_institutional, agency_sponsored, unknown, not_applicable — determines which CTA pattern the card uses (see ClaimAm design findings doc).",
+  "last_updated": "2026-09-17",
+  "programs": [
+    {
+      "id": "nelfund",
+      "name": "NELFUND (Nigerian Education Loan Fund)",
+      "category": [
+        "Education"
+      ],
+      "org_type": "government",
+      "agency": "NELFUND",
+      "benefit": "Full tuition + up to ₦20,000/month upkeep, interest-free",
+      "who_its_for": "Tertiary students needing tuition and upkeep support",
+      "eligibility": [
+        "Nigerian citizen",
+        "Enrolled at a federal or state-owned university, polytechnic, monotechnic, college of education, or vocational/innovation enterprise institution (IEI)",
+        "Active, currently enrolled student (not a graduate or prospective applicant)",
+        "Valid NIN required",
+        "Institution must have uploaded the student's record to the NELFUND Student Verification Portal"
+      ],
+      "required_documents": [
+        "NIN",
+        "JAMB or matric number",
+        "proof of admission/enrollment (via school's verification upload)"
+      ],
+      "application_process": "Register on the NELFUND student portal, verify JAMB/matric number, confirm institution, upload admission letter, then request the loan from your dashboard",
+      "apply_url": "https://portal.nelf.gov.ng",
+      "status": "closed_for_2025_26_window",
+      "status_detail": "2025/26 window ran 23 Oct 2025 – 31 Jan 2026, extended to 27 Feb 2026, then closed. As of Sept 2026 no confirmed 2026/27 opening date found — recheck portal.nelf.gov.ng before demo/launch.",
+      "confidence": "high",
+      "source_url": "https://nelf.gov.ng and https://portal.nelf.gov.ng (fetched directly, Sept 2026)",
+      "source_checked": "2026-09-17",
+      "notes": "IMPORTANT FIX: the previously recorded apply_url (nelfund.gov.ng) does not resolve (DNS failure) — it is a dead domain, not the real NELFUND site. The correct official domain is nelf.gov.ng, with the application portal at portal.nelf.gov.ng. Anyone who had bookmarked or shared the old .gov.ng-look-alike link should be redirected — this is exactly the kind of stale/wrong link the 'never show a fake Apply now' design principle is meant to catch.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "npower",
+      "name": "N-Power",
+      "category": [
+        "Employment",
+        "Youth Opportunities"
+      ],
+      "org_type": "government",
+      "agency": "NSIPA",
+      "benefit": "Job placement + skills training to increase employability",
+      "who_its_for": "Unemployed graduates and non-graduates, 18-35",
+      "eligibility": [
+        "Age 18-35",
+        "Open to both graduates and non-graduates"
+      ],
+      "required_documents": [
+        "NIN",
+        "BVN",
+        "recent passport photograph",
+        "valid email address or phone number",
+        "means of ID (National ID, Voter's Card, Driver's License, or International Passport)"
+      ],
+      "application_process": "Register with your NIN (auto-populates personal details), complete the form with contact/education details and BVN, upload documents, then select a primary and alternate programme (e.g. N-Teach, N-Health, N-Tech)",
+      "apply_url": "https://nsipa.gov.ng/npower/",
+      "status": "ongoing_no_set_end_date",
+      "confidence": "needs_verification",
+      "source_url": "Aggregator sources only (pbridgeco.com, mediangr.com.ng, recruitnaija.com) — nasims.gov.ng and npower.gov.ng both refused connection on direct fetch, Sept 2026",
+      "source_checked": "2026-09-17",
+      "notes": "Documents/process above are corroborated across several independent guide sites, but the actual live portal URL is unresolved — sources conflict between nasims.gov.ng, npower.gov.ng, and npower.fmhds.gov.ng, and none were reachable directly. N-Power also appears to be converging with NSIPA's newer VSTP (Vocational and Skills Training Programme, vstpmedds.nsipa.gov.ng) — worth a live phone check with NSIPA (info@nsipa.gov.ng, +234 802 126 6483) to confirm which portal is current before demo.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "geep_tradermoni",
+      "name": "GEEP — TraderMoni",
+      "category": [
+        "Business/Funding"
+      ],
+      "org_type": "government",
+      "agency": "NSIPA",
+      "benefit": "Interest-free loan, ₦50,000–₦300,000",
+      "who_its_for": "Enterprising youth (petty traders/artisans)",
+      "eligibility": [
+        "Age 18-40",
+        "Nigerian citizen",
+        "Has an existing small trading business"
+      ],
+      "required_documents": [
+        "NIN",
+        "BVN",
+        "functioning bank account"
+      ],
+      "application_process": "Visit the NSIPA GEEP info page, then follow the program's current application channel (no stable direct application URL found — see notes)",
+      "apply_url": "https://nsipa.gov.ng/geep/",
+      "status": "ongoing",
+      "confidence": "needs_verification",
+      "source_url": "Aggregator sources (cutoffmark.ng, connectnigeria.com) for eligibility/documents; apply_url corrected 2026-09-17 after a user confirmed geep.nsipa.gov.ng is suspended in production, not just transiently down",
+      "source_checked": "2026-09-17",
+      "notes": "CORRECTED 2026-09-17: geep.nsipa.gov.ng (used from 2026-09-17 research through the same day) returns 'service has been suspended' in production, confirmed by a real user click-through, not just an automated-fetch fluke. Reverted apply_url to nsipa.gov.ng/geep/, which is live (200) but is an NSIPA info page describing the program rather than a working application form — same limitation the original research already flagged. geep.com.ng (also live) is an alternative info page, same limitation. No genuinely working GEEP application URL has been found yet — needs a live human check before demo, and the card copy should not imply a working 'Apply now' form exists.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "geep_marketmoni",
+      "name": "GEEP — MarketMoni",
+      "category": [
+        "Business/Funding",
+        "Women & Family"
+      ],
+      "org_type": "government",
+      "agency": "NSIPA",
+      "benefit": "Interest-free loan, ₦50,000–₦300,000",
+      "who_its_for": "Women traders",
+      "eligibility": [
+        "Age 18-55",
+        "Women engaged in market trading, typically affiliated with a market association/cooperative",
+        "Nigerian citizen"
+      ],
+      "required_documents": [
+        "NIN",
+        "BVN",
+        "functioning bank account"
+      ],
+      "application_process": "Visit the NSIPA GEEP info page, then follow the program's current application channel (no stable direct application URL found — see notes)",
+      "apply_url": "https://nsipa.gov.ng/geep/",
+      "status": "ongoing",
+      "confidence": "needs_verification",
+      "source_url": "Aggregator sources (cutoffmark.ng, connectnigeria.com) — same GEEP umbrella and portal-access caveats as TraderMoni",
+      "source_checked": "2026-09-17",
+      "notes": "Same GEEP umbrella as TraderMoni/FarmerMoni — same correction (geep.nsipa.gov.ng confirmed suspended in production by a real user click-through, reverted to the live nsipa.gov.ng/geep/ info page).",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "geep_farmermoni",
+      "name": "GEEP — FarmerMoni",
+      "category": [
+        "Business/Funding",
+        "Agriculture"
+      ],
+      "org_type": "government",
+      "agency": "NSIPA",
+      "benefit": "Interest-free loan, ₦50,000–₦300,000",
+      "who_its_for": "Farmers",
+      "eligibility": [
+        "Age 18-55",
+        "Nigerian citizen",
+        "Farmer, typically part of an aggregator farming group/cooperative"
+      ],
+      "required_documents": [
+        "NIN",
+        "BVN",
+        "functioning bank account"
+      ],
+      "application_process": "Visit the NSIPA GEEP info page, then follow the program's current application channel (no stable direct application URL found — see notes)",
+      "apply_url": "https://nsipa.gov.ng/geep/",
+      "status": "ongoing",
+      "confidence": "needs_verification",
+      "source_url": "Aggregator sources (cutoffmark.ng, connectnigeria.com, haskenews.com.ng) — same GEEP umbrella and portal-access caveats as TraderMoni",
+      "source_checked": "2026-09-17",
+      "notes": "Project Brief lists a separate general '₦300,000 FarmerMoni' figure from a secondary source (MSME Africa/Haskenews) — official NSIPA page gives the ₦50k-300k range; treat secondary figures as unconfirmed. Same GEEP correction as TraderMoni (geep.nsipa.gov.ng confirmed suspended in production by a real user click-through, reverted to the live nsipa.gov.ng/geep/ info page).",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "federal_scholarship_board",
+      "name": "Federal Scholarship Board Award",
+      "category": [
+        "Education"
+      ],
+      "org_type": "government",
+      "agency": "Federal Scholarship Board (Federal Ministry of Education)",
+      "benefit": "₦450,000 (undergraduate/NCE/HND) to ₦750,000 (PhD) renewable annual award, per category (Nigerian Scholarship Award, Education Bursary Award, Commonwealth Scholarship & Fellowship Plan)",
+      "who_its_for": "Undergraduate, postgraduate, and PhD students",
+      "eligibility": [
+        "Nigerian Awards (undergrad): 5 SSCE credits, UTME score ≥180, admission to a Nigerian university, age below 25",
+        "BEA (undergrad): 5 SSCE distinctions, UTME score ≥200, age 18-22",
+        "Nigerian Awards (postgrad): first class or upper second class degree, admission, age below 35",
+        "CSFP: postgraduate/PhD, degree-based criteria"
+      ],
+      "required_documents": [
+        "needs_verification — likely SSCE result, UTME result, admission letter, degree certificate for postgrad"
+      ],
+      "application_process": "Online, free, via the Federal Ministry of Education's scholarship portal",
+      "apply_url": "https://scholarship.education.gov.ng/",
+      "status": "benefit amounts confirmed current (50% increase applied across all levels); live application window not confirmed",
+      "confidence": "needs_verification",
+      "source_url": "https://education.gov.ng/federal-scholarships-board/ (fetched directly, Sept 2026) for org structure + benefit amounts; scholarship.education.gov.ng confirmed as the real portal but is JS-rendered and didn't yield eligibility/document detail on direct fetch",
+      "source_checked": "2026-09-17",
+      "notes": "RESOLVED: found a real primary .gov.ng source (education.gov.ng/federal-scholarships-board/) confirming the Board's structure and updated benefit amounts — the old '₦300,000/year' figure and 'no primary source found' apply_url placeholder were both wrong/stale. Eligibility criteria and required documents are still the older secondary-sourced figures (unchanged, not yet re-verified against the new portal) — recheck scholarship.education.gov.ng with a JS-capable browser, or call info@education.gov.ng / +234 8163653484 before demo.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "3mtt",
+      "name": "3MTT (3 Million Technical Talent)",
+      "category": [
+        "Employment",
+        "Youth Opportunities"
+      ],
+      "org_type": "government",
+      "agency": "Federal Ministry of Communications, Innovation & Digital Economy / NITDA",
+      "benefit": "Free tech-skills training; some tracks include laptop/router/data; Talent Registry connects to paid tech jobs from ₦150,000/month",
+      "who_its_for": "Nigerians wanting digital/tech skills — broadly open",
+      "eligibility": [
+        "Nigerian citizen",
+        "Basic ability to use a smartphone or computer"
+      ],
+      "required_documents": [
+        "needs_verification"
+      ],
+      "application_process": "Register online, complete assessments, wait for selection into a training cohort. The separate Talent Registry (job placement, ₦150k+/month) has its own registration via 3MTT + Skill Ladders, distinct from training enrollment.",
+      "apply_url": "https://3mtt.nitda.gov.ng/",
+      "status": "training registration open on a rolling basis (no fixed close date found); the Talent Registry job-placement track's 14 May 2026 deadline has passed",
+      "confidence": "needs_verification",
+      "source_url": "https://3mtt.nitda.gov.ng/ plus aggregator corroboration (msmeafricaonline.com, jobviza.com), Sept 2026",
+      "source_checked": "2026-09-17",
+      "notes": "RESOLVED (partially): training-track registration itself appears to be open/rolling, not tied to the passed 14 May 2026 deadline — that deadline was specifically for the Talent Registry job-placement track, which appears to have run its course. Program 2, described as three cohorts totaling 270,000 places, is referenced but its own registration dates weren't confirmed against a primary source. Recheck 3mtt.nitda.gov.ng directly before demo to confirm current cohort is genuinely accepting new registrations.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "njfp",
+      "name": "NJFP (Nigeria Jubilee Fellows Programme)",
+      "category": [
+        "Employment",
+        "Youth Opportunities"
+      ],
+      "org_type": "government",
+      "agency": "Federal Government of Nigeria, funded by the EU, implemented with UNDP",
+      "benefit": "₦150,000/month stipend, 12-month paid placement (public or private sector)",
+      "who_its_for": "Young unemployed graduates",
+      "eligibility": [
+        "Nigerian citizen",
+        "Age 30 or below",
+        "Bachelor's degree or HND",
+        "Graduated not earlier than 2022",
+        "Minimum Second Class Lower (university) or Upper Credit (HND)",
+        "Completed NYSC or holds a valid exemption certificate",
+        "Currently unemployed",
+        "Willing to work full-time during the fellowship"
+      ],
+      "required_documents": [
+        "degree certificate or HND certificate",
+        "NYSC certificate or exemption letter",
+        "CV",
+        "a short video (max 60 seconds, max 10MB) answering 'What makes YOU the ideal NJFP Fellow?'"
+      ],
+      "application_process": "Register at njfp.ng/apply, complete the application form, upload required documents plus the short video response, and submit",
+      "apply_url": "https://www.njfp.ng/apply",
+      "status": "NJFP 2.0 application cycle referenced as active per UNDP and program coverage — recheck njfp.ng/apply for exact current window before demo",
+      "confidence": "high",
+      "source_url": "njfp.ng/eligibility and njfp.ng/apply confirmed to exist (Sept 2026, though the site is a JS-rendered SPA so a static fetch only returned the page title); eligibility/process detail corroborated via UNDP Nigeria (undp.org/nigeria/njfp-20-coming-heres-everything-you-need-know-get-ready-apply), a co-implementing partner, plus consistent secondary coverage",
+      "source_checked": "2026-09-17",
+      "notes": "UPGRADED from needs_verification: eligibility criteria now corroborated by UNDP Nigeria (a program co-implementer, not just a random aggregator), and the specific apply flow — including the distinctive video-submission requirement — is consistent across sources, which is a strong signal it's accurate. Still worth a final live check of njfp.ng/apply close to demo day since the exact page content couldn't be rendered by an automated fetch (JS SPA).",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "mtn_foundation_scholarship",
+      "name": "MTN Foundation Scholarship",
+      "category": [
+        "Education"
+      ],
+      "org_type": "corporate (CSR)",
+      "agency": "MTN Foundation (MTN Nigeria)",
+      "benefit": "₦300,000/year until graduation (subject to meeting grade/upskilling requirements), across three tracks: Science & Technology (STS), Scholarship for Blind Students (SBS), and Top 10 UTME",
+      "who_its_for": "Undergraduates in Nigerian public tertiary institutions — STEM/medical students (STS), blind students (SBS), or Nigeria's top 10 JAMB UTME scorers regardless of course",
+      "eligibility": [
+        "STS: 300-level STEM students or 400-level medical students at a public institution, minimum CGPA 3.0/4.0",
+        "SBS: 200-300 level blind students at a public institution, minimum CGPA 2.5 (university) or 2.0 (polytechnic)",
+        "Top 10 UTME: automatic qualification for Nigeria's top 10 JAMB UTME scorers, any course, any institution type"
+      ],
+      "required_documents": [
+        "needs_verification for exact list — likely admission letter, JAMB result, current CGPA/transcript, means of ID"
+      ],
+      "application_process": "Apply online via the official MTN Foundation scholarship form",
+      "apply_url": "https://apps.mtn.ng/scholarships/form",
+      "status": "open_for_2026_edition",
+      "confidence": "high",
+      "source_url": "https://www.mtn.ng/scholarships/ (fetched directly, Sept 2026) — MTN's own corporate domain, confirmed open with detailed eligibility",
+      "source_checked": "2026-09-17",
+      "notes": "Strongest of the newly-added scholarships — real corporate domain, detailed published eligibility, confirmed currently open (unlike several other programs in this dataset). 400 STS + 100 SBS + 10 Top-UTME slots annually per secondary coverage.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "ptdf_scholarship",
+      "name": "PTDF Scholarship (In-Country & Overseas)",
+      "category": [
+        "Education"
+      ],
+      "org_type": "government",
+      "agency": "Petroleum Technology Development Fund (PTDF)",
+      "benefit": "In-Country: ₦700,000/year + a laptop, for bachelor's/master's/PhD at accredited Nigerian universities. Overseas: fully-funded MSc/PhD (tuition, return airfare, accommodation/living allowance, health insurance) at partner universities in the UK, Germany, France, or Malaysia",
+      "who_its_for": "Nigerian students in priority fields (engineering, geosciences, energy studies, environmental sciences, technology development) at bachelor's, master's, or PhD level",
+      "eligibility": [
+        "needs_verification for exact criteria — likely Nigerian citizenship, admission/enrollment in an eligible priority field, academic performance threshold"
+      ],
+      "required_documents": [
+        "needs_verification — likely admission letter, transcripts, means of ID; overseas track likely requires an offer from a partner university"
+      ],
+      "application_process": "Create an applicant account and apply online via the PTDF scholarship portal",
+      "apply_url": "https://scholarship.ptdf.gov.ng/",
+      "status": "2026 cycle applications closed 5 June 2026; reopens annually — recheck before demo",
+      "confidence": "needs_verification",
+      "source_url": "https://scholarship.ptdf.gov.ng/ (fetched directly, Sept 2026 — confirmed real portal with PTDF branding, account creation/login live) plus aggregator corroboration (msmeafricaonline.com, scholarshipregion.com) for benefit amounts and deadline",
+      "source_checked": "2026-09-17",
+      "notes": "Real federal agency (.gov.ng-pattern domain), portal confirmed operational, but exact eligibility criteria and required documents weren't retrievable via automated fetch (multi-page portal). Large benefit amount makes this worth including despite the verification gap — recheck the Guidelines page directly before demo.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "nnpc_chevron_scholarship",
+      "name": "NNPC/Chevron JV National Merit Scholarship",
+      "category": [
+        "Education"
+      ],
+      "org_type": "corporate (oil & gas JV CSR)",
+      "agency": "NNPC Limited / Chevron Nigeria Limited (CNL) Joint Venture",
+      "benefit": "₦200,000/year, renewable each academic year until graduation (subject to continued eligibility)",
+      "who_its_for": "Full-time 200-level undergraduates in accredited Nigerian universities, in eligible courses (Engineering, Medicine, Law, Pharmacy, Computer Science, Accountancy, Agriculture, Architecture, Mass Communication, Environmental Studies, Geology, Business Administration, and related disciplines); a separate category exists for visually impaired students",
+      "eligibility": [
+        "Full-time 200-level student in an accredited Nigerian university",
+        "Minimum CGPA of 3.5/5.0 (or equivalent)",
+        "At least six O'Level credits obtained in one sitting",
+        "Studying an eligible course (see who_its_for)"
+      ],
+      "required_documents": [
+        "needs_verification for exact list — likely admission letter, O'Level result, current CGPA/transcript, means of ID"
+      ],
+      "application_process": "Apply online via the Scholastica platform (the shared application system used by several NNPC joint-venture scholarships, including Chevron, Shell, and Renaissance)",
+      "apply_url": "https://candidate.scholastica.ng/",
+      "status": "2026 cycle applications closed 30 June 2026; reopens annually — recheck before demo",
+      "confidence": "needs_verification",
+      "source_url": "Aggregator sources (edugist.org, scholarsworld.ng, masteredu.com.ng) converge consistently; the Scholastica platform itself was independently corroborated as the genuine official channel by multiple unrelated sources including explicit anti-scam warnings naming this exact domain ('CNL does NOT assign representatives or agents... avoid look-alike domains')",
+      "source_checked": "2026-09-17",
+      "notes": "IMPORTANT CAVEAT: an initial automated fetch of candidate.scholastica.ng read as a sparse, hard-to-verify site — a second independent search corroborated it as the real shared platform for multiple legitimate oil-JV scholarships (NNPC/Chevron, NNPC/Shell/SNEPCo, NNPC/Renaissance), including official-sounding anti-scam guidance pointing to this exact domain. Treat this corroboration as reasonably strong but not equivalent to a direct fetch of Chevron's or NNPC's own site confirming it — worth a final human check before demo, precisely because scholarship scams are common in Nigeria and this kind of shared-platform pattern is also what a convincing scam would look like.",
+      "access_pathway": "self_service_application"
+    },
+    {
+      "id": "shell_spdc_scholarship",
+      "name": "Shell (SPDC JV) National Merit Scholarship Award",
+      "category": [
+        "Education"
+      ],
+      "org_type": "corporate (oil & gas JV CSR)",
+      "agency": "Shell Petroleum Development Company (SPDC), on behalf of the NNPC/SPDC/TotalEnergies/NAOC Joint Venture",
+      "benefit": "₦150,000/year",
+      "who_its_for": "200-level Nigerian undergraduates (i.e. students who have just completed their first year)",
+      "eligibility": [
+        "200-level student (just completed first year)",
+        "Minimum CGPA around 2.5",
+        "National Merit Award (NM) category open to all Nigerians; Areas of Operation Merit Award (OM) category is for indigenes of Abia, Bayelsa, Delta, Imo, or Rivers States",
+        "Shortlisting is based on SSCE and JAMB/UTME results, followed by an aptitude test"
+      ],
+      "required_documents": [
+        "needs_verification for exact list — likely SSCE result, JAMB result, admission letter, means of ID"
+      ],
+      "application_process": "Apply online via the Scholastica platform, then sit an aptitude test if shortlisted (over 4,000 applicants sit this test annually)",
+      "apply_url": "https://candidate.scholastica.ng/",
+      "status": "needs_verification_now — exact 2026 cycle window not confirmed against a primary source",
+      "confidence": "needs_verification",
+      "source_url": "Aggregator sources (scholarafrika.com, o3schools.com, universities.ng, edugaze.com.ng) converge consistently on eligibility and benefit; same Scholastica platform corroboration as the NNPC/Chevron entry",
+      "source_checked": "2026-09-17",
+      "notes": "Same Scholastica-platform caveat as NNPC/Chevron — reasonably corroborated but not directly fetched from Shell's own site. Narrower eligibility than most other programs in this dataset (200-level only, one-time application window per cohort) — worth flagging to the user that this is a narrower fit than it might first appear.",
+      "access_pathway": "self_service_application"
+    }
+  ]
+}
