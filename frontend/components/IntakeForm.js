@@ -42,9 +42,12 @@ export default function IntakeForm({ category, onSubmit, loading, initialValue }
   const examplePrompts = EXAMPLE_PROMPTS_BY_CATEGORY[category] || EXAMPLE_PROMPTS_BY_CATEGORY.unknown;
 
   // initialValue arrives asynchronously (restored from sessionStorage after mount, e.g.
-  // when returning via the browser Back button) — sync it in once it shows up.
+  // when returning via the browser Back button) — sync it in once it shows up. Storage is
+  // only readable client-side, so this can't be done in initial state without a
+  // server/client hydration mismatch.
   useEffect(() => {
     if (initialValue) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setValue(initialValue);
     }
   }, [initialValue]);

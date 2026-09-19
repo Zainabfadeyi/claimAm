@@ -29,6 +29,12 @@ npm run dev
 
 Open http://localhost:3000.
 
+`GEMINI_API_KEY_2` and `GEMINI_API_KEY_3` are optional fallback keys — if the primary key hits
+the free tier's daily quota or a transient "high demand" error, `geminiClient.js` automatically
+retries with the next configured key before giving up. Useful for demo days: generate 2-3 free
+keys from separate Google accounts at aistudio.google.com/apikey and set all three in Vercel's
+environment variables.
+
 ## Structure
 
 ```

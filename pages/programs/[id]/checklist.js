@@ -18,6 +18,9 @@ export default function ProgramChecklist({ program }) {
       if (raw) {
         const saved = JSON.parse(raw);
         if (Array.isArray(saved) && saved.length === steps.length) {
+          // sessionStorage is only readable client-side, so this can't be done in initial
+          // state without a server/client hydration mismatch.
+          // eslint-disable-next-line react-hooks/set-state-in-effect
           setChecked(saved);
         }
       }

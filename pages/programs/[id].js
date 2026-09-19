@@ -15,6 +15,9 @@ export default function ProgramDetail({ program }) {
   const [match, setMatch] = useState(null);
 
   useEffect(() => {
+    // sessionStorage is only readable client-side, so this can't be done in initial state
+    // without a server/client hydration mismatch.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMatch(readMatch(program.id));
   }, [program.id]);
 
@@ -156,8 +159,8 @@ export default function ProgramDetail({ program }) {
                 <h3 className="text-sm font-semibold text-red-700">Stay safe</h3>
                 <p className="mt-1 text-xs leading-relaxed text-red-700">
                   {program.name} is free to apply for. Never pay anyone — including a cybercafé
-                  attendant or "agent" — to submit or speed up your application, and never share
-                  your NIN, BVN, or bank PIN with anyone claiming to do this for you.
+                  attendant or &quot;agent&quot; — to submit or speed up your application, and
+                  never share your NIN, BVN, or bank PIN with anyone claiming to do this for you.
                 </p>
               </div>
             </aside>

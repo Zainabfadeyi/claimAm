@@ -34,6 +34,9 @@ export default function MyProgress({ programs }) {
       .filter(Boolean)
       .sort((a, b) => b.percent - a.percent || a.name.localeCompare(b.name));
 
+    // sessionStorage is only readable client-side, so this can't be done in initial state
+    // without a server/client hydration mismatch.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setRows(withProgress);
   }, [programs]);
 

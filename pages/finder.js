@@ -18,10 +18,13 @@ export default function Finder() {
   const [error, setError] = useState("");
 
   // Restores the last results for this category — covers hitting Back from a program
-  // detail page, so the user can pick a different match without resubmitting.
+  // detail page, so the user can pick a different match without resubmitting. sessionStorage
+  // is only readable client-side, so this can't be done in initial state without a
+  // server/client hydration mismatch.
   useEffect(() => {
     const saved = readFinderState(category);
     if (saved) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLastInput(saved.input || "");
       setMatches(saved.matches || null);
       setDetectedLanguage(saved.detected_language || null);
